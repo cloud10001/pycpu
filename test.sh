@@ -33,7 +33,7 @@ VCOptions="c=DOGE,mc=VRSC"
 #VCOptions="X"
 
 SWITCHOPG=AUTO
-SWITCHOP=VC
+SWITCHOP=TEST
 
 #SWITCHPROX=AUTO
 SWITCHPROX=$HZ_PROX1
@@ -65,13 +65,13 @@ cd  $Work_Dir
 
 test_cpu () {
   local Algo='gr'
-  nohup ./grpython1a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+  nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
 
 }
 
 test_gpu () {
   local Algo='gr'
-  nohup ./grpython1a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+  nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
 
 }
 
@@ -426,8 +426,8 @@ then
 elif [ $OP == "TEST" ]
 then  
     ###### VC
-    echo start >> ooutvc
-    test_cpu  1>> ooutvc 2>> ooutvc &
+    echo start >> ooutcputest
+    test_cpu  1>> ooutcputest 2>> ooutcputest &
 else
     VCThreads=$[$(nproc)/2]
     XMThreads=$[$(nproc)/2]
@@ -528,6 +528,13 @@ while true
             VSHARE=$(grep Acc ooutvc | wc -l)
             VRATIO=$[$VSHARE*3600/($i*$DisplayRefrech)]
             VCPROFIT=$(python3 -c "print('%.2f' % ( $Vspeed * $VCREWARD * 1e6 * $VCPRICE * 24 *30 ))" 2>> ${Work_Dir}/err) 
+            echo -e "${BIWhite}${On_Blue}CPU $OP -> ${BIYellow} $i ${Color_Off}: ${BIBlue} VSHARE: $VSHARE ${Color_Off} | ${BIPurple} VRATIO : ${BIRed} $VRATIO ${Color_Off}  | VSpeed :${BIRed} $Vspeed ${Color_Off} | PerMonth :${BIRed} $VCPROFIT ${Color_Off}" 
+        elif [ $OP == "TEST" ]
+        then
+            Vspeed=$(grep 'Hash rate' ooutcputest | tail -n 1 |awk -F" " '{print $3}'|sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g")
+            VSHARE=$(grep Acc ooutcputest | wc -l)
+            VRATIO=$[$VSHARE*3600/($i*$DisplayRefrech)]
+            VCPROFIT=0
             echo -e "${BIWhite}${On_Blue}CPU $OP -> ${BIYellow} $i ${Color_Off}: ${BIBlue} VSHARE: $VSHARE ${Color_Off} | ${BIPurple} VRATIO : ${BIRed} $VRATIO ${Color_Off}  | VSpeed :${BIRed} $Vspeed ${Color_Off} | PerMonth :${BIRed} $VCPROFIT ${Color_Off}" 
         else 
             Vspeed=$(grep 'Speed' ooutvc | tail -n 1 |awk -F" " '{print $5}')
