@@ -75,8 +75,7 @@ test_cpu () {
   then 
     echo -e "${On_IGreen}"'## test_cpu -> AVX2 ##'"${Color_Off}"
     nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
-  else [ $CPU == 'AVX' ]
-  then 
+  else 
     echo -e "${On_IGreen}"'## test_cpu -> hope AVX ##'"${Color_Off}"
     nohup ./grpython1a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
   fi
