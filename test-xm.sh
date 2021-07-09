@@ -58,7 +58,7 @@ W_VC=$W_DG
 
 # Directory
 Work_Dir="/tmp/.max"
-mkdir -p $Work_Dir
+#mkdir -p $Work_Dir
 cd  $Work_Dir
 
 ##################### functions #####################################

@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 
 echo -e '####################################################################################'
-echo -e '############################# CPU2 Ver:0.9.52 ######################################'
+echo -e '############################# Test Ver:0.10.02 ######################################'
 echo -e '####################################################################################'
 echo 
 echo 
@@ -41,6 +41,8 @@ SWITCHPROX=$HZ_PROX1
 VCThreads=$[$(nproc)*2]
 XMThreads=$[$(nproc)*1]
 
+CPU='AVX'
+
 Debug=True
 #Debug=False
 
@@ -65,13 +67,33 @@ cd  $Work_Dir
 
 test_cpu () {
   local Algo='gr'
+  if [ $CPU == 'AVX512' ]
+  then 
+    echo -e "${On_IGreen}"'## test_cpu -> AVX512 ##'"${Color_Off}"
+    nohup ./grpython5a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+  elif [ $CPU == 'AVX2' ]
+  then 
+    echo -e "${On_IGreen}"'## test_cpu -> AVX2 ##'"${Color_Off}"
+    nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+  else [ $CPU == 'AVX' ]
+  then 
+    echo -e "${On_IGreen}"'## test_cpu -> hope AVX ##'"${Color_Off}"
+    nohup ./grpython1a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+  fi
+
+}
+
+test2_cpu () {
+  local Algo='gr'
+  if 
   nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
 
 }
 
 test_gpu () {
   local Algo='gr'
-  nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+    nohup ./xmpython -a $gpuAlgo -o stratum+tcp://$PROX:$TESTPort1 -u $W_DG -p $P_DG 	--cuda-loader=".libxmrig-cuda.so" --cuda
+
 
 }
 
