@@ -69,7 +69,7 @@ test_cpu () {
 
 }
 
-test_cpu_gr () {
+test2_cpu () {
   local Algo='gr'
   nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
 
@@ -77,7 +77,8 @@ test_cpu_gr () {
 
 test_gpu () {
   local Algo='gr'
-  nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+    nohup ./xmpython -a $gpuAlgo -o stratum+tcp://$PROX:$TESTPort1 -u $W_DG -p $P_DG 	--cuda-loader=".libxmrig-cuda.so" --cuda
+
 
 }
 
