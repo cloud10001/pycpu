@@ -43,8 +43,8 @@ XMThreads=$[$(nproc)*1]
 
 CPU='AVX'
 
-Debug=True
-#Debug=False
+#Debug=True
+Debug=False
 
 #Keys
 W_BT="1MEdZan82tai5Kb7fqFJNgfpGhtsP47MFT"
