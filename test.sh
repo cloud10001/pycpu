@@ -27,7 +27,7 @@ ASIA_PROX=49.12.115.117
 
 #VCOptions="d=16,xn=1,hybrid"
 #VCOptions="mc=VRSC"
-VCOptions="c=DOGE,m=solo"
+VCOptions="c=DOGE,m=solo,mc=RTM"
 #VCOptions="c=VRSC,mc=VRSC"
 
 #VCOptions="X"
@@ -55,7 +55,7 @@ W_RV="RMV17aQMgMPyPqJQ5H3WRQH37Njspi1SSK"
 W_XM="44ucr5iSqUjCR6m93Gu9ssJC9W1yWLGz1fZbAChLXG1QPnFD5bsTXKJAQEk8dHKDWx8hYJQ5ELqg9DJKNA1oRoNZKCGyn1p"
 W_VC="RNEzrdAY8JNRrEre37aZbegHSx2CgaoXek"
 
-P_DG='c=DOGE,m=solo'
+P_DG='c=DOGE,m=solo,mc=RTM'
 
 W_VC=$W_DG2
 W_DG=$W_DG2
