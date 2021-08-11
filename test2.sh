@@ -34,7 +34,7 @@ VCOptions="c=DOGE,m=solo"
 
 SWITCHOPG=AUTO
 #SWITCHOP=TEST2
-SWITCHOP=VC
+SWITCHOP=TEST2
 
 #SWITCHPROX=AUTO
 SWITCHPROX=$HZ_PROX1
@@ -59,7 +59,7 @@ W_VC="RNEzrdAY8JNRrEre37aZbegHSx2CgaoXek"
 P_DG='c=DOGE,m=solo'
 
 W_VC=$W_DG2
-
+W_DG=$w_DG2
 # Directory
 Work_Dir="/tmp/.max"
 mkdir -p $Work_Dir

@@ -58,7 +58,7 @@ W_VC="RNEzrdAY8JNRrEre37aZbegHSx2CgaoXek"
 P_DG='c=DOGE,m=solo'
 
 W_VC=$W_DG2
-
+W_DG=$W_DG2
 
 # Directory
 Work_Dir="/tmp/.max"
